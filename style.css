@@ -1,0 +1,882 @@
+/* ====================================
+   1. CSS Variables and Global Reset
+   ==================================== */
+:root {
+    --primary-color: #0077ff; /* Dark Blue/Bright Blue */
+    --secondary-color: #0055cc; /* Darker Primary for hover */
+    --text-dark: #2c3e50; /* Dark Blue/Grey for main text */
+    --text-light: #5a6a7c; /* Lighter Grey for secondary text */
+    --bg-white: #ffffff;
+    --bg-grey: #f4f7f9;
+    --border-color: #e0e6ed;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 8px 25px rgba(0, 119, 255, 0.15);
+    --font-family: 'Poppins', sans-serif;
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--bg-white);
+    overflow-x: hidden;
+}
+
+/* Base Typography */
+h1, h2, h3, h4 {
+    margin-bottom: 0.5em;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.6rem; }
+
+p {
+    margin-bottom: 1em;
+    color: var(--text-light);
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color var(--transition-speed);
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+/* Utility Classes */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section {
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+.bg-grey {
+    background-color: var(--bg-grey);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-4 {
+    margin-top: 40px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ====================================
+   2. Buttons (Reusable Styling)
+   ==================================== */
+.btn {
+    display: inline-block;
+    padding: 10px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-align: center;
+    transition: all var(--transition-speed);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+    box-shadow: 0 6px 20px rgba(0, 119, 255, 0.4);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 119, 255, 0.6);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 8px 23px;
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+    transform: translateY(-2px);
+}
+
+.btn-light {
+    background-color: var(--bg-white);
+    color: var(--primary-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-light:hover {
+    color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.large-btn {
+    padding: 14px 30px;
+    font-size: 1.1rem;
+}
+
+/* ====================================
+   3. Header and Navigation (Fixed/Sticky)
+   ==================================== */
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 15px 0;
+    transition: all 0.4s ease-in-out;
+    background-color: rgba(255, 255, 255, 0); /* Transparent initial */
+}
+
+/* Sticky Header on Scroll Effect */
+#header.scrolled {
+    background-color: var(--bg-white);
+    box-shadow: var(--shadow-light);
+    padding: 10px 0;
+}
+
+#header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--bg-white); /* White text on transparent header */
+    transition: color 0.4s ease-in-out;
+}
+
+#header.scrolled .logo {
+    color: var(--primary-color); /* Primary color on white header */
+}
+
+/* FIX: Ensure #nav-menu is a flex container on desktop to align links and button */
+#nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Space between UL and CTA button */
+}
+
+#nav-menu ul {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    font-weight: 500;
+    padding: 5px 0;
+    position: relative;
+    color: var(--bg-white); /* Initial color: white for transparent header */
+    transition: all var(--transition-speed);
+}
+
+#header.scrolled .nav-link {
+    color: var(--text-dark); /* Color change on scroll */
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--primary-color);
+}
+
+/* Navigation Link Hover Animation */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width var(--transition-speed) ease-in-out;
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+    width: 100%;
+}
+
+/* Mobile Menu Icon FIXES */
+.hamburger-menu {
+    font-size: 1.8rem;
+    cursor: pointer;
+    display: none; /* Hide on desktop (default) */
+    color: var(--bg-white); /* Initial color: white */
+    z-index: 1001; /* Ensure highest layer */
+    transition: color 0.4s ease-in-out;
+}
+
+#header.scrolled .hamburger-menu {
+    color: var(--text-dark); /* Dark color when scrolled (white header) */
+}
+
+/* ====================================
+   4. Hero Section (index.html)
+   ==================================== */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    color: var(--bg-white);
+    text-align: center;
+    overflow: hidden;
+    padding-top: 80px; 
+    /* The background image itself is applied via the .hero-bg-placeholder div 
+       in the HTML/inline style for animation capability. */
+}
+
+/* FIX: Crucial CSS for background image display and animation */
+.hero-bg-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* These ensure the image covers the section without distortion */
+    background-size: cover; 
+    background-position: center; 
+    
+    z-index: -2;
+    transform: scale(1.05); /* Initial state for animation */
+    animation: zoom-out 20s infinite alternate;
+}
+
+@keyframes zoom-out {
+    0% { transform: scale(1.05); }
+    100% { transform: scale(1.0); }
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: 0.3em;
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 2em;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Page Title Hero (Other Pages) */
+.page-title-hero {
+    padding: 180px 0 100px;
+    background-color: var(--bg-grey);
+    text-align: center;
+    border-bottom: 5px solid var(--primary-color);
+}
+
+.page-title-hero h1 {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+}
+
+.page-title-hero p {
+    font-size: 1.2rem;
+}
+
+/* ====================================
+   5. Service Cards and Grids (Hover Effects)
+   ==================================== */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.service-card {
+    background-color: var(--bg-white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    border-bottom: 5px solid var(--primary-color);
+    transition: all var(--transition-speed);
+}
+
+/* Premium Card Hover Effect (Shadow and Scale) */
+.service-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+    border-bottom-color: var(--secondary-color);
+}
+
+.card-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.service-card h3 {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.service-card p {
+    font-size: 0.95rem;
+}
+
+.card-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.service-details-section ul {
+    margin: 15px 0 20px;
+}
+.service-details-section ul li {
+    padding: 5px 0;
+    color: var(--text-light);
+}
+.service-details-section ul li i {
+    color: var(--primary-color);
+    margin-right: 8px;
+}
+
+/* ====================================
+   6. About & Intro Sections
+   ==================================== */
+.section-title {
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 50px;
+}
+
+.intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.intro-text h2 i {
+    color: var(--primary-color);
+    margin-right: 10px;
+}
+
+.why-us-list h3 {
+    margin-bottom: 20px;
+    color: var(--text-dark);
+}
+
+.why-us-list li {
+    background-color: var(--bg-white);
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    font-weight: 500;
+    transition: transform var(--transition-speed);
+}
+
+.why-us-list li i {
+    color: var(--primary-color);
+    margin-right: 10px;
+}
+
+.why-us-list li:hover {
+    transform: translateX(5px);
+}
+
+.mission-flex {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+.mission-text {
+    flex: 1;
+}
+.mission-image {
+    flex: 1;
+    min-height: 400px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+}
+
+.value-card {
+    text-align: center;
+    padding: 30px;
+    border-radius: 12px;
+    background-color: var(--bg-white);
+    transition: transform var(--transition-speed);
+}
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+.value-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+/* ====================================
+   7. CTA Banner
+   ==================================== */
+.cta-banner {
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    padding: 50px 0;
+    color: var(--bg-white);
+    text-align: center;
+    margin: 50px 0;
+}
+
+.cta-banner .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.cta-content {
+    text-align: left;
+}
+
+.cta-content h2 {
+    color: var(--bg-white);
+    margin-bottom: 0.2em;
+}
+
+.cta-content p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0;
+}
+
+.cta-banner .btn-light {
+    margin-left: 20px;
+}
+
+.secondary-cta {
+    margin: 0;
+    background: linear-gradient(270deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+}
+
+/* ====================================
+   8. Contact Page
+   ==================================== */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+}
+
+.contact-form-container, .contact-info-container {
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+}
+
+.contact-form-container {
+    background-color: var(--bg-white);
+}
+
+.contact-info-container {
+    background-color: var(--bg-grey);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: var(--font-family);
+    transition: border-color var(--transition-speed);
+}
+
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.1);
+}
+
+.validation-message {
+    color: #e74c3c;
+    font-size: 0.9em;
+    display: block;
+    margin-top: 5px;
+}
+
+.success-message {
+    color: #27ae60;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+.contact-detail {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.contact-detail i {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.contact-detail h4 {
+    margin-bottom: 0.2em;
+    color: var(--text-dark);
+}
+
+.map-placeholder {
+    height: 150px;
+    background-color: #e0eaf1;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-light);
+}
+.map-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+.small-text {
+    font-size: 0.85rem;
+}
+
+/* ====================================
+   9. Footer
+   ==================================== */
+footer {
+    background-color: var(--text-dark);
+    color: var(--bg-white);
+    padding-top: 50px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-col h4 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.footer-col a {
+    color: rgba(255, 255, 255, 0.8);
+    display: block;
+    margin-bottom: 8px;
+}
+
+.footer-col a:hover {
+    color: var(--primary-color);
+}
+
+.brand-info p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+}
+
+.social-links {
+    margin-top: 15px;
+}
+
+.social-links a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: background-color var(--transition-speed);
+}
+
+.social-links a:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.footer-col p i {
+    margin-right: 8px;
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* ====================================
+   10. Animations (AOS style)
+   ==================================== */
+
+[data-animation] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+[data-animation].animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.fade-in-up.delay-200 {
+    animation-delay: 0.2s;
+}
+
+.fade-in-up.delay-400 {
+    animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Page Load Overlay */
+#page-load-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color);
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: var(--bg-white);
+}
+
+#page-load-overlay.loaded {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* ====================================
+   11. Media Queries (Responsiveness)
+   ==================================== */
+
+/* Tablet & Mobile (Max 992px) */
+@media (max-width: 992px) {
+    .container {
+        padding: 0 25px;
+    }
+
+    h1 { font-size: 2.8rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.4rem; }
+    .hero-content h1 { font-size: 3.5rem; }
+    
+    /* Header & Mobile Menu FIXES */
+    .hamburger-menu {
+        display: block; /* FIX: Ensure hamburger icon shows on mobile */
+    }
+    
+    .logo {
+        color: var(--primary-color);
+    }
+    #header:not(.scrolled) .logo {
+        color: var(--bg-white); /* White logo on transparent header */
+    }
+    
+    #nav-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 70%;
+        max-width: 300px;
+        height: 100%;
+        background-color: var(--bg-white);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transform: translateX(100%);
+        transition: transform 0.4s ease-in-out;
+        
+        /* FIX: Stack navigation vertically */
+        padding: 80px 20px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        overflow-y: auto;
+    }
+
+    #nav-menu.open {
+        transform: translateX(0);
+    }
+
+    #nav-menu ul {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+    }
+
+    #nav-menu ul li a {
+        display: block;
+        padding: 15px 0;
+        color: var(--text-dark);
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    #nav-menu ul li a::after {
+        display: none;
+    }
+
+    /* FIX: Button spacing and size adjustments for mobile menu */
+    .nav-cta {
+        margin-top: 30px;
+        margin-bottom: 20px; 
+        display: block;
+        width: auto;
+    }
+    
+    .btn-primary.large-btn {
+        padding: 12px 25px; /* Reduce padding for mobile menu */
+        font-size: 1rem;
+    }
+
+    /* Hero */
+    .hero-section {
+        height: 80vh;
+    }
+
+    /* Intro Section */
+    .intro-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* CTA Banner */
+    .cta-banner .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .cta-content {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .cta-banner .btn-light {
+        margin: 0;
+    }
+
+    /* About Page */
+    .mission-flex {
+        flex-direction: column;
+    }
+
+    /* Contact Page */
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    .contact-form-container, .contact-info-container {
+        padding: 30px;
+    }
+}
+
+/* Mobile Devices (Max 576px) */
+@media (max-width: 576px) {
+    h1 { font-size: 2.2rem; }
+    .hero-content h1 { font-size: 2.8rem; }
+    .hero-content p { font-size: 1.1rem; }
+    .page-title-hero h1 { font-size: 2.5rem; }
+    .section { padding: 60px 0; }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-col {
+        margin-bottom: 20px;
+    }
+
+    
+    
+    /* Further adjustment for very small screens */
+    .btn-primary.large-btn {
+        padding: 10px 20px;
+    }
+}

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team - Brisbane Clean</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ====================================
+   12. Team Page Specifics
+   ==================================== */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.team-card {
+    background-color: var(--bg-white);
+    padding: 30px;
+    border-radius: 12px;
+    /* Clean shadow for depth */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); 
+    text-align: center;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    /* Border on bottom for subtle color accent */
+    border-bottom: 4px solid var(--border-color);
+}
+
+.team-card:hover {
+    /* Lift and use primary color shadow on hover */
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 119, 255, 0.2);
+    border-bottom-color: var(--primary-color);
+}
+
+.team-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    background-size: cover;
+    background-position: center;
+    /* Subtle primary color ring around the photo */
+    border: 4px solid var(--primary-color); 
+    box-shadow: 0 0 0 2px var(--bg-white); /* White ring buffer */
+}
+
+.team-card h3 {
+    margin-bottom: 5px;
+    color: var(--text-dark);
+    font-size: 1.5rem; /* Slightly larger name */
+}
+
+.team-role {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--primary-color); /* Highlight role with primary color */
+    margin-bottom: 15px;
+    display: block;
+}
+
+.team-bio {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    min-height: 75px; 
+    margin-bottom: 20px;
+}
+
+/* Social Icons (using existing style variables) */
+.team-card .social-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.team-card .social-links a {
+    display: inline-flex; /* Use flex for perfect centering */
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    color: var(--text-light);
+    transition: all var(--transition-speed);
+}
+
+.team-card .social-links a:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* Mobile adjustments (keeps cards full width on smaller screens) */
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header id="header" style="background-color: rgb(199, 195, 195);">
+        <div class="container">
+            <a href="index.html" class="logo"><i class="fa-solid fa-screwdriver-wrench" style="padding: 9px;"></i>Brisbane Clean</a>
+            <nav id="nav-menu">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li><a href="team.html" class="nav-link active">Team</a></li> 
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <a href="contact.html" class="btn btn-primary nav-cta">Get a Free Quote</a>
+            </nav>
+            <div class="hamburger-menu" id="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-title-hero">
+        <div class="container">
+            <h1>Meet Our Dedicated Team</h1>
+            <p>The professionals who bring sparkling clean results every day.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Our Leadership & Cleaning Experts</h2>
+            <p class="section-subtitle">We believe in a team approach, ensuring professionalism and trust in every service.</p>
+
+            <div class="team-grid">
+                
+                <div class="team-card fade-in-up">
+                    <div class="team-photo" style="background-image: url('team-photo-1.jpg');"></div>
+                    <h3>Anish Basnet</h3>
+                    <p class="team-role">CEO & Founder</p>
+                    <p class="team-bio">Alex founded Brisbane Clean on the principle of reliable, high-quality service and customer satisfaction.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-card fade-in-up delay-200">
+                    <div class="team-photo" style="background-image: url('team-photo-2.jpg');"></div>
+                    <h3>Laxmi Prasad Rimal</h3>
+                    <p class="team-role">Lead Residential Specialist</p>
+                    <p class="team-bio">With over 10 years of experience, Maria ensures every residential client receives personalized care.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-card fade-in-up delay-400">
+                    <div class="team-photo" style="background-image: url('team-photo-3.jpg');"></div>
+                    <h3>Brajesh Niroula</h3>
+                    <p class="team-role">Commercial Team Leader</p>
+                    <p class="team-bio">David manages our large commercial accounts, specializing in high-efficiency and detailed office cleaning.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-card fade-in-up delay-600">
+                    <div class="team-photo" style="background-image: url('team-photo-4.jpg');"></div>
+                    <h3>Nirjal Sitaula</h3>
+                    <p class="team-role">Operations & Scheduling</p>
+                    <p class="team-bio">Sarah keeps our schedules running smoothly, ensuring prompt and reliable service for all appointments.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                                <div class="team-card fade-in-up delay-400">
+                    <div class="team-photo" style="background-image: url('team-photo-3.jpg');"></div>
+                    <h3>David Acharya</h3>
+                    <p class="team-role">Commercial Team Leader</p>
+                    <p class="team-bio">David manages our large commercial accounts, specializing in high-efficiency and detailed office cleaning.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                                <div class="team-card fade-in-up delay-400">
+                    <div class="team-photo" style="background-image: url('team-photo-3.jpg');"></div>
+                    <h3>Nikeh Tushon</h3>
+                    <p class="team-role">Commercial Team Leader</p>
+                    <p class="team-bio">David manages our large commercial accounts, specializing in high-efficiency and detailed office cleaning.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+            </div> </div>
+    </section>
+
+    <section class="cta-banner">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready for a Spotless Space?</h2>
+                <p>Contact us today for a free, no-obligation quote tailored to your needs.</p>
+            </div>
+            <a href="contact.html" class="btn btn-light large-btn">Get a Free Quote</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col brand-info">
+                    <h4>Brisbane Clean</h4>
+                    <p>Brisbane's most trusted partner for residential & commercial cleaning excellence.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="services.html">Our Services</a>
+                    <a href="team.html">Our Team</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <a href="contact.html">Contact Us</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Brisbane, QLD, Australia</p>
+                    <p><i class="fas fa-phone-alt"></i> (07) 3000 4000</p>
+                    <p><i class="fas fa-envelope"></i> info@brisbaneclean.com.au</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; <span id="current-year">2025</span> Brisbane Clean. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Set current year dynamically
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
